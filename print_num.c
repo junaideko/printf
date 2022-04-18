@@ -1,5 +1,5 @@
 #include <unistd.h>
-i/**
+/**
  * print_int - prints an integer
  * @d: integer to print
  * Return: number of characters printed
