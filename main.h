@@ -1,15 +1,17 @@
-#ifndef PRINTF_H
-#define PRINTF_H
+#ifndef MAIN_H
+#define MAIN_H
+
 #include <stdarg.h>
+#include <stddef.h>
 #include <unistd.h>
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <limits.h>
 /**
  * struct specifier - structure for format specifier
  * @str: name of specifier
  * @func: function pointer
  */
-
 typedef struct specifier
 {
 	char str;
@@ -17,9 +19,10 @@ typedef struct specifier
 } fmt_spec;
 
 int _printf(const char *format, ...);
+int (*get_func(char s))(va_list *);
 int print_char(va_list *c);
 int print_str(va_list *str);
-int (*get_func(char s))(va_list *);
+char *_strcpy(char *dest, char *src);
 char *_revstr(char *str);
 char *_itoa(unsigned int arg_int, char *strout, int base);
 char *__itoa(int arg_int, char *strout, int base);
