@@ -1,8 +1,10 @@
 #include "printf.h"
 /**
  * _printf - custom printf function
+ *
  * @format: pointer to format
- * Return: data to stdout
+ * @...: Ellipses
+ * Return: number of character printed
  */
 
 int _printf(const char *format, ...)
@@ -13,20 +15,15 @@ int _printf(const char *format, ...)
 	int i, len;
 
 	va_start(args, format);
-	/**
-	 * char known_spec[] = {'c', 's', 'i', 'd', 'x', 'X',
-	 * 'o', 'p', '%', 'l', 'e', 'E','g',
-	 * 'G', 'f', 'h', 'L', 'u', 'n', 'b'};
-	 * char b;
-	 */
 	len = 0;
 
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
-			i++;  /* frward */
+			i++;
 			f = format[i];
+
 			if (f == '%' || format[i + 1] == '%')
 			{
 				len += write(1, "%", 1);
