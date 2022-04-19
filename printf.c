@@ -19,22 +19,44 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%' )
 		{
-			i++;  /* frward */
-			f = format[i];
 
-			if (f == '%' || format[i + 1] == '%')
-			{
-				len += write(1, "%", 1);
-				continue;
-			}
-			prints = get_func(f);
-			len += prints(&args);
-		}
-		else
-		{
-			len += write(1, &format[i], 1);
-		}
-	}
-	va_end(args);
-	return (len);
+										                   
+			i++;  /* frward */
+
+												               f = format[i];
+
+
+
+													                   if (f == '%' || format[i + 1] == '%')
+
+																               {
+
+																		                       len += write(1, "%", 1);
+
+																				                       continue;
+
+																						                   }
+
+															          
+
+															               prints = get_func(f);
+
+																                   len += prints(&args);
+
+																		           }
+
+							               else
+
+									               {
+
+											                   len += write(1, &format[i], 1);
+
+													           }
+
+								           }
+
+				        va_end(args);
+
+					    return (len);
+
 }
