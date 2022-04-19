@@ -1,4 +1,9 @@
 #include "printf.h"
+/**
+ * _printf - custom printf function
+ * @format: pointer to format
+ * Return: data to stdout
+ */
 
 int _printf(const char *format, ...)
 {
@@ -6,6 +11,7 @@ int _printf(const char *format, ...)
 	char f;
 	int (*prints)(va_list *);
 	int i, len;
+
 	va_start(args, format);
 	/**
 	 * char known_spec[] = {'c', 's', 'i', 'd', 'x', 'X',
@@ -17,46 +23,22 @@ int _printf(const char *format, ...)
 
 	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (format[i] == '%' )
+		if (format[i] == '%')
 		{
-
-										                   
 			i++;  /* frward */
-
-												               f = format[i];
-
-
-
-													                   if (f == '%' || format[i + 1] == '%')
-
-																               {
-
-																		                       len += write(1, "%", 1);
-
-																				                       continue;
-
-																						                   }
-
-															          
-
-															               prints = get_func(f);
-
-																                   len += prints(&args);
-
-																		           }
-
-							               else
-
-									               {
-
-											                   len += write(1, &format[i], 1);
-
-													           }
-
-								           }
-
-				        va_end(args);
-
-					    return (len);
-
+			f = format[i];
+			if (f == '%' || format[i + 1] == '%')
+			{
+				len += write(1, "%", 1);
+				continue;
+			}
+			prints = get_func(f);
+			len += prints(&args);
+		}
+		else
+		{
+			len += write(1, &format[i], 1);
+		}
+		va_end(args);
+		return (len);
 }

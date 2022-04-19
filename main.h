@@ -4,6 +4,11 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+/**
+ * struct specifier - structure for format specifier
+ * @str: name of specifier
+ * @func: function pointer
+ */
 
 typedef struct specifier
 {
